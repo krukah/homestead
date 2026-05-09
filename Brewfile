@@ -76,9 +76,7 @@ brew "podman"
 # PDF rendering library (based on the xpdf-3.0 code base)
 brew "poppler"
 # Object-relational database system
-brew "postgresql@14"
-# Object-relational database system
-brew "postgresql@16"
+brew "postgresql@17"
 # Proof assistant for higher-order logic
 brew "rocq"
 # Easiest, most secure way to use WireGuard and 2FA
