@@ -1,0 +1,16 @@
+# Secrets — these should never have a path here in the first place,
+# but belt + suspenders.
+*.local
+.env
+.env.*
+**/credentials
+**/credentials.json
+**/*token*
+**/*secret*
+**/*.pem
+**/id_rsa*
+**/id_ed25519*
+
+# Junk
+.DS_Store
+**/.tmp*
