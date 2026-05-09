@@ -1,10 +1,7 @@
 tap "auth0/auth0-cli"
 tap "hashicorp/tap"
 tap "homebrew/services"
-tap "osx-cross/arm"
-tap "osx-cross/avr"
 tap "pulumi/tap"
-tap "qmk/qmk"
 # Tool for generating GNU Standards-compliant Makefiles
 brew "automake"
 # Curl like simplicity to access AWS resources
@@ -95,10 +92,8 @@ brew "zig"
 brew "auth0/auth0-cli/auth0"
 # Terraform
 brew "hashicorp/tap/terraform"
-# Pulumi - Modern Infrastructure as Code. Any cloud, any language 
+# Pulumi - Modern Infrastructure as Code. Any cloud, any language
 brew "pulumi/tap/pulumi"
-# Quantum Mechanical Keyboard (QMK) Firmware
-brew "qmk/qmk/qmk"
 # --- editors / terminals ---
 cask "cursor"
 cask "ghostty"
@@ -113,7 +108,6 @@ cask "msty"
 cask "ollama"
 cask "session-manager-plugin"
 cask "wireshark-app"
-cask "wkhtmltopdf"
 
 # --- browsers ---
 cask "arc"
