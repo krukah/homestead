@@ -128,7 +128,7 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-. "$HOME/.local/bin/env"
+[ -f "$HOME/.local/bin/env" ] && . "$HOME/.local/bin/env"  # uv (installed by toolchains.sh)
 
 # API keys redacted from repo. Real values live in ~/.zshrc.local (gitignored).
 # TODO Phase 2: pull from Keychain or 1Password CLI via chezmoi template.
