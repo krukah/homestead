@@ -1,4 +1,4 @@
 
 . "$HOME/.cargo/env"
 
-export PATH="$PATH:/Users/krukah/.foundry/bin"
+export PATH="$PATH:$HOME/.foundry/bin"

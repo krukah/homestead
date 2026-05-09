@@ -14,3 +14,6 @@
 # Junk
 .DS_Store
 **/.tmp*
+
+# Tool-managed metadata that bakes in absolute paths and rewrites itself.
+home/.config/uv/uv-receipt.json
