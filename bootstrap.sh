@@ -7,7 +7,6 @@ set -euo pipefail
 
 REPO_URL="https://github.com/krukah/homestead.git"
 REPO_DIR="$HOME/Code/homestead"
-ZSH_CUSTOM="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}"
 
 step() { printf "\n\033[1;34m==>\033[0m %s\n" "$*"; }
 
@@ -35,14 +34,10 @@ brew bundle install --file=Brewfile
 step "gh auth"
 gh auth status >/dev/null 2>&1 || gh auth login
 
-step "oh-my-zsh + plugins"
+step "oh-my-zsh"
 if [[ ! -d "$HOME/.oh-my-zsh" ]]; then
   RUNZSH=no CHSH=no KEEP_ZSHRC=yes \
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-fi
-if [[ ! -d "$ZSH_CUSTOM/plugins/you-should-use" ]]; then
-  git clone https://github.com/MichaelAquilina/zsh-you-should-use.git \
-    "$ZSH_CUSTOM/plugins/you-should-use"
 fi
 
 step "Stow dotfiles"
