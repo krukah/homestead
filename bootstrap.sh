@@ -36,11 +36,12 @@ step "Essentials (stow + gh)"
 brew install stow gh
 
 step "Stow dotfiles"
-# git only preserves the executable bit, so re-tighten sensitive files first.
-chmod 0600 home/.ssh/config home/.aws/config
 # --restow makes this idempotent: removes existing symlinks and re-creates them.
 stow --restow --target="$HOME" home
-[[ -d "$HOME/.ssh" ]] && chmod 0700 "$HOME/.ssh"
+# ~/.ssh and ~/.aws are intentionally not tracked (the tools rewrite them in
+# place). Make sure the dirs exist with the right perms so first use is clean.
+mkdir -p "$HOME/.ssh" "$HOME/.aws"
+chmod 0700 "$HOME/.ssh"
 
 step "oh-my-zsh"
 if [[ ! -d "$HOME/.oh-my-zsh" ]]; then

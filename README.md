@@ -33,6 +33,11 @@ OAuth tokens (`gh`, `gcloud`, `auth0`, `github-copilot`), AWS creds + SSO, Claud
 session state, Zed embeddings, SSH/GPG private keys. All of those re-auth or get
 restored from 1Password on a new machine.
 
+`~/.aws/config` and `~/.ssh/config` are also intentionally untracked. Tools
+rewrite them in place (`aws configure sso`, adding a `Host` block), and a
+tracked symlink would mean those edits get committed back to a public repo.
+Run `aws configure sso` and edit `~/.ssh/config` directly on each machine.
+
 Chrome PWAs (Google Docs/Sheets/Slides launchers) — open Chrome, navigate to the
 service, three-dot menu → Cast/Save/Share → Install page as App.
 

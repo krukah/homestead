@@ -17,3 +17,9 @@
 
 # Tool-managed metadata that bakes in absolute paths and rewrites itself.
 home/.config/uv/uv-receipt.json
+
+# Configs that tools rewrite in place — tracking them here would mean
+# a tool like `aws configure sso` or adding an SSH Host silently commits
+# real account IDs / server addresses back into the public repo.
+home/.aws/config
+home/.ssh/config
