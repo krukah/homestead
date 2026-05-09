@@ -73,20 +73,12 @@ brew "neovim"
 brew "opam"
 # Tool for managing OCI containers and pods
 brew "podman"
-# Python package management tool
-brew "poetry"
 # PDF rendering library (based on the xpdf-3.0 code base)
 brew "poppler"
 # Object-relational database system
 brew "postgresql@14"
 # Object-relational database system
 brew "postgresql@16"
-# Python version management
-brew "pyenv"
-# Interpreted, interactive, object-oriented programming language
-brew "python@3.12"
-# Interpreted, interactive, object-oriented programming language
-brew "python@3.9"
 # Proof assistant for higher-order logic
 brew "rocq"
 # Easiest, most secure way to use WireGuard and 2FA
