@@ -119,6 +119,7 @@ cask "zed"
 
 # --- dev tools ---
 cask "docker-desktop"
+cask "msty"
 cask "ollama"
 cask "session-manager-plugin"
 cask "wireshark-app"
