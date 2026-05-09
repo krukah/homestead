@@ -41,6 +41,15 @@ service, three-dot menu → Cast/Save/Share → Install page as App.
 `home/.zshrc` doesn't hold any. API keys live in `~/.zshrc.local` (gitignored).
 On a new machine: sign into 1Password, put the keys in `~/.zshrc.local`, done.
 
+## If you fork this
+
+Two things to swap before running `bootstrap.sh`:
+
+- `bootstrap.sh` — change `REPO_URL` to your fork.
+- `home/.gitconfig` — your `name` and `email`.
+
+Everything else uses `$HOME` and works on any macOS account.
+
 ## License
 
 MIT. Steal what's useful.
