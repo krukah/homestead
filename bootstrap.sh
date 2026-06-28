@@ -72,6 +72,8 @@ fi
 
 step "Done. Manual leftovers:"
 cat <<'EOF'
+  - VS Code: sign into GitHub (Settings Sync) + Claude Code extension
+  - claude: run `claude` once to authenticate
   - SSH/GPG keys (1Password 8 SSH agent recommended)
   - ~/.zshrc.local with OPENAI_API_KEY, ANTHROPIC_API_KEY
   - aws configure sso

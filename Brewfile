@@ -117,6 +117,7 @@ cask "google-chrome"
 # --- ai ---
 cask "chatgpt"
 cask "claude"
+cask "claude-code"
 
 # --- comms ---
 cask "discord"
