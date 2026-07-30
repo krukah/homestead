@@ -64,13 +64,14 @@ fi
 sdk install java 21.0.5-tem </dev/null || true   # idempotent: errors if already installed
 
 echo "==> Scala (Coursier — installs scala, sbt, scala-cli, scalafmt to ~/.local/bin)"
-if ! command -v cs >/dev/null; then
+# Homebrew's coursier formula installs the binary as `coursier`, not `cs`.
+if ! command -v coursier >/dev/null; then
   brew install coursier
 fi
-# Skip `cs setup` (modifies shell rc); install tools directly to ~/.local/bin.
+# Skip `coursier setup` (modifies shell rc); install tools directly to ~/.local/bin.
 mkdir -p "$HOME/.local/bin"
-cs install --install-dir "$HOME/.local/bin" \
-  scala sbt scala-cli scalafmt 2>/dev/null || true
+coursier install --install-dir "$HOME/.local/bin" \
+  scala sbt scala-cli scalafmt || true
 
 echo "==> Cargo tools"
 # Installed here (not via the Brewfile's `cargo` entries) because these need
