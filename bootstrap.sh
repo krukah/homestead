@@ -26,6 +26,27 @@ if ! command -v brew >/dev/null; then
 fi
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
+step "Authorize sudo once (Touch ID + keep-alive)"
+# Several cask installers (docker-desktop, wireshark-app, session-manager-plugin
+# and the other .pkg-based apps) shell out to `sudo`. Rather than stop to type a
+# password for each one mid-run, authorize sudo a single time here and keep the
+# credential warm until bootstrap exits — so `brew bundle` runs start to finish
+# without re-prompting. Also wire up Touch ID for sudo (Apple's sudo_local
+# mechanism) so this run and every future one can authenticate by fingerprint.
+if sudo -v; then
+  if [[ ! -f /etc/pam.d/sudo_local ]] || ! grep -q '^auth.*pam_tid.so' /etc/pam.d/sudo_local; then
+    sudo cp /etc/pam.d/sudo_local.template /etc/pam.d/sudo_local
+    sudo sed -i '' 's/^#auth/auth/' /etc/pam.d/sudo_local
+  fi
+  # Refresh the sudo timestamp every 60s in the background so a long install
+  # never has to ask again; the loop dies with the script.
+  ( while true; do sudo -n true; sleep 60; kill -0 "$$" 2>/dev/null || exit; done ) &
+  SUDO_KEEPALIVE_PID=$!
+  trap 'kill "$SUDO_KEEPALIVE_PID" 2>/dev/null || true' EXIT
+else
+  warn "sudo not authorized — cask installers that need it may prompt individually"
+fi
+
 step "Clone repo"
 mkdir -p "$(dirname "$REPO_DIR")"
 [[ -d "$REPO_DIR/.git" ]] || git clone "$REPO_URL" "$REPO_DIR"
