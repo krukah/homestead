@@ -26,11 +26,8 @@ mkdir -p "$HOME/Pictures/Screenshots"
 defaults write com.apple.screencapture location "$HOME/Pictures/Screenshots"
 defaults write com.apple.screencapture type -string "png"
 
-echo "==> Touch ID for sudo"
-if [[ ! -f /etc/pam.d/sudo_local ]]; then
-  echo "Run: sudo cp /etc/pam.d/sudo_local.template /etc/pam.d/sudo_local"
-  echo "Then uncomment the pam_tid.so line."
-fi
+# Touch ID for sudo is set up in bootstrap.sh (it needs to happen before the
+# cask installs, not here), so it's intentionally not repeated in this file.
 
 echo "==> Restarting affected services"
 killall Finder Dock SystemUIServer 2>/dev/null || true
