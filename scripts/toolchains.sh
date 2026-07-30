@@ -52,8 +52,12 @@ fi
 
 echo "==> Java (SDKMAN — manages multiple JDKs)"
 if [[ ! -d "$HOME/.sdkman" ]]; then
+  # SDKMAN's installer requires Bash 4+, but macOS ships Bash 3.2. Use the
+  # Homebrew bash (in the Brewfile) explicitly instead of the pipe's default.
   # rcupdate=false: don't let SDKMAN edit ~/.zshrc — the repo owns it.
-  curl -s "https://get.sdkman.io?rcupdate=false" | bash
+  modern_bash="$(brew --prefix)/bin/bash"
+  [[ -x "$modern_bash" ]] || modern_bash=bash
+  curl -s "https://get.sdkman.io?rcupdate=false" | "$modern_bash"
 fi
 # shellcheck disable=SC1091
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && . "$HOME/.sdkman/bin/sdkman-init.sh"
@@ -67,5 +71,16 @@ fi
 mkdir -p "$HOME/.local/bin"
 cs install --install-dir "$HOME/.local/bin" \
   scala sbt scala-cli scalafmt 2>/dev/null || true
+
+echo "==> Cargo tools"
+# Installed here (not via the Brewfile's `cargo` entries) because these need
+# `--locked`: cargo-nextest refuses to build without it, and trunk's dep tree
+# (lightningcss/cssparser) only compiles against its committed Cargo.lock.
+# shellcheck disable=SC1091
+source "$HOME/.cargo/env" 2>/dev/null || true
+cargo install --locked \
+  cargo-leptos cargo-llvm-cov cargo-nextest cargo-show-asm flamegraph \
+  leptosfmt samply sqlx-cli trunk wasm-bindgen-cli wasm-opt \
+  || echo "!! some cargo tools failed; re-run 'cargo install --locked <name>'"
 
 echo "==> done"

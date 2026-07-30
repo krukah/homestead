@@ -49,6 +49,13 @@ if [[ ! -d "$HOME/.oh-my-zsh" ]]; then
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 fi
 
+step "Trust third-party taps"
+# Newer Homebrew refuses to load formulae from non-official taps until trusted,
+# and an untrusted tap aborts the whole `brew bundle`. Trust ours up front.
+for t in auth0/auth0-cli hashicorp/tap pulumi/tap; do
+  brew trust "$t" 2>/dev/null || warn "could not trust tap $t"
+done
+
 step "brew bundle (non-fatal — partial failures are OK)"
 # A single broken formula shouldn't kill the rest of bootstrap. Re-run
 # `brew bundle install --file=Brewfile` later to retry stragglers.
