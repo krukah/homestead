@@ -89,6 +89,36 @@ brew "websocat"
 brew "stow"
 # Programming language designed for robustness, optimality, and clarity
 brew "zig"
+# Cross-platform make
+brew "cmake"
+# Package compiler and linker metadata toolkit (provides pkg-config)
+brew "pkgconf"
+# Small build system for use with gyp or CMake
+brew "ninja"
+# Static analysis and lint tool, for (ba)sh scripts
+brew "shellcheck"
+# Autoformat shell script source code (used by the shell-format VS Code ext)
+brew "shfmt"
+# Search tool like grep and The Silver Searcher
+brew "ripgrep"
+# Simple, fast and user-friendly alternative to find
+brew "fd"
+# Command-line fuzzy finder written in Go
+brew "fzf"
+# Clone of cat(1) with syntax highlighting and Git integration
+brew "bat"
+# Modern, maintained replacement for ls
+brew "eza"
+# Display directories as trees (with optional color/HTML output)
+brew "tree"
+# Internet file retriever
+brew "wget"
+# GNU File, Shell, and Text utilities
+brew "coreutils"
+# GNU implementation of the famous stream editor
+brew "gnu-sed"
+# GNU awk utility
+brew "gawk"
 # Build, manage and test your Auth0 integrations from the command line
 brew "auth0/auth0-cli/auth0"
 # Terraform
