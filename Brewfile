@@ -1,9 +1,10 @@
 tap "auth0/auth0-cli"
 tap "hashicorp/tap"
-tap "homebrew/services"
 tap "pulumi/tap"
 # Tool for generating GNU Standards-compliant Makefiles
 brew "automake"
+# Bourne-Again SHell, a UNIX command interpreter (macOS ships 3.2; SDKMAN needs 4+)
+brew "bash"
 # Curl like simplicity to access AWS resources
 brew "awscurl"
 # GNU binary tools for native development
@@ -105,7 +106,7 @@ cask "zed"
 # --- dev tools ---
 cask "docker-desktop"
 cask "msty"
-cask "ollama"
+cask "ollama-app"
 cask "session-manager-plugin"
 cask "wireshark-app"
 
@@ -171,14 +172,7 @@ vscode "rust-lang.rust-analyzer"
 vscode "vadimcn.vscode-lldb"
 vscode "vscjava.vscode-java-pack"
 vscode "yzhang.markdown-all-in-one"
-cargo "cargo-leptos"
-cargo "cargo-llvm-cov"
-cargo "cargo-nextest"
-cargo "cargo-show-asm"
-cargo "flamegraph"
-cargo "leptosfmt"
-cargo "samply"
-cargo "sqlx-cli"
-cargo "trunk"
-cargo "wasm-bindgen-cli"
-cargo "wasm-opt"
+# NOTE: cargo tools live in scripts/toolchains.sh, not here — they need
+# `cargo install --locked` (nextest refuses to build without it; trunk's
+# dep tree only compiles against its committed lockfile), which the Brewfile
+# `cargo` directive can't express.
